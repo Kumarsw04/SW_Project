@@ -1,0 +1,120 @@
+.load-panel {
+  min-width: 0;
+}
+
+.load-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.load-summary > div:not(.range-switch) {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.load-panel .metric-label {
+  color: var(--today-muted, #929ba1);
+  font-size: 11px;
+}
+
+.load-summary > div > strong {
+  margin-top: 2px;
+  color: var(--today-text, #f3f4f4);
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.range-switch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--today-border, rgba(255, 255, 255, 0.1));
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.range-switch button {
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--today-muted, #929ba1);
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  white-space: nowrap;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.range-switch button:hover {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.range-switch button.active {
+  background: rgba(232, 197, 120, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(232, 197, 120, 0.08);
+  color: var(--today-gold, #e8c578);
+}
+
+.chart-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  color: var(--today-muted, #929ba1);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.chart-subtitle svg {
+  flex-shrink: 0;
+  color: var(--today-gold, #e8c578);
+}
+
+.comparison-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(131, 181, 164, 0.09);
+  color: var(--today-green, #83b5a4);
+  font-size: 11px;
+}
+
+@media (min-width: 1200px) {
+  .load-panel {
+    grid-column: span 7;
+  }
+}
+
+@media (max-width: 640px) {
+  .load-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .range-switch {
+    max-width: 100%;
+  }
+
+  .range-switch button {
+    padding: 6px 9px;
+    font-size: 9px;
+  }
+
+  .load-summary > div > strong {
+    font-size: 21px;
+  }
+}
+

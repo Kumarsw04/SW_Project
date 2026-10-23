@@ -1,0 +1,613 @@
+
+/* =========================================
+   BUILDING 3D - MAIN CARD
+========================================= */
+
+.building3d-card {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #e2e9ed;
+  border-radius: 22px;
+  background: #fff;
+  color: #172b36;
+  box-shadow: 0 12px 38px rgba(24, 49, 62, 0.06);
+  font-family: inherit;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.building3d-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 24px 26px 18px;
+  border-bottom: 1px solid #edf1f3;
+}
+
+.building3d-eyebrow {
+  margin: 0 0 7px;
+  color: #4b9f91;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.building3d-header h2 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+
+.building3d-subtitle {
+  margin: 7px 0 0;
+  color: #788992;
+  font-size: 12px;
+}
+
+.building3d-live,
+.building3d-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  border: 1px solid #dcefe9;
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #347f70;
+  background: #f2fbf7;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.building3d-live i,
+.building3d-status i,
+.building3d-flat-name i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #32b58f;
+}
+
+/* =========================================
+   MAIN CONTENT LAYOUT
+========================================= */
+
+.building3d-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.8fr);
+  min-height: 520px;
+}
+
+/* =========================================
+   3D BUILDING VIEWER
+========================================= */
+
+.building3d-viewer {
+  position: relative;
+  min-width: 0;
+  min-height: 520px;
+  background: #000000;
+  overflow: hidden;
+}
+
+.building3d-viewer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  outline: none;
+}
+
+.building3d-hint {
+  position: absolute;
+  bottom: 13px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 90%;
+  padding: 8px 12px;
+  border: 1px solid rgba(220, 229, 232, 0.9);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #71838b;
+  font-size: 10px;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* =========================================
+   FLOOR DOTS
+========================================= */
+
+.building-flat-dot {
+  display: block;
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #43c7a5;
+  box-shadow:
+    0 0 0 3px rgba(67, 199, 165, 0.22),
+    0 2px 7px rgba(18, 51, 53, 0.3);
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.building-flat-dot:hover {
+  transform: scale(1.3);
+  background: #149d80;
+}
+
+.building-flat-dot.is-selected {
+  background: #178e7b;
+  box-shadow: 0 0 0 4px rgba(67, 199, 165, 0.3);
+}
+
+/* =========================================
+   SELECTED FLOOR LABEL
+========================================= */
+
+.building-floor-tag {
+  padding: 5px 9px;
+  border: 1px solid #cbe9e1;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #247d6d;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(20, 50, 60, 0.1);
+}
+
+/* =========================================
+   LOADING INDICATOR
+========================================= */
+
+.building3d-loading {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fff;
+  color: #526871;
+  font-size: 12px;
+}
+
+/* =========================================
+   RIGHT DETAILS PANEL
+========================================= */
+
+.building3d-details {
+  min-width: 0;
+  padding: 22px 20px;
+  border-left: 1px solid #edf1f3;
+}
+
+.building3d-empty {
+  display: flex;
+  min-height: 420px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  text-align: center;
+}
+
+.building3d-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: #edf8f5;
+  color: #389b88;
+  font-size: 26px;
+}
+
+.building3d-empty h3 {
+  margin: 15px 0 6px;
+  font-size: 16px;
+}
+
+.building3d-empty p {
+  max-width: 210px;
+  margin: 0;
+  color: #7b8a91;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   SELECTED FLOOR HEADING
+========================================= */
+
+.building3d-detail-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.building3d-label,
+.building3d-selected-flat > span {
+  color: #819199;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.building3d-detail-heading h3 {
+  margin: 5px 0 0;
+  font-size: 21px;
+  letter-spacing: -0.03em;
+}
+
+/* =========================================
+   CURRENT FLOOR LOAD
+========================================= */
+
+.building3d-load-card {
+  padding: 17px;
+  border: 1px solid #e6eeef;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #f7fbfa, #fff);
+}
+
+.building3d-load-card > span {
+  display: block;
+  color: #788992;
+  font-size: 11px;
+}
+
+.building3d-load-card > strong {
+  display: block;
+  margin: 8px 0 13px;
+  font-size: 30px;
+  letter-spacing: -0.05em;
+}
+
+.building3d-load-card > strong small,
+.building3d-flat-load small {
+  color: #788992;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.building3d-load-track {
+  height: 5px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e7efef;
+}
+
+.building3d-load-track span {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: #45b99f;
+  transition: width 0.25s ease;
+}
+
+.building3d-demo-note {
+  display: block;
+  margin-top: 12px;
+  color: #9aa6ab;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   FLOOR STATISTICS
+========================================= */
+
+.building3d-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.building3d-stat-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid #e4ecee;
+  border-radius: 12px;
+  background: #f8fbfb;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.building3d-stat-card:hover {
+  border-color: #cde7e1;
+  background: #f4faf8;
+}
+
+.building3d-stat-card span {
+  color: #71828d;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.building3d-stat-card strong {
+  color: #17364b;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   FLATS SECTION HEADING
+========================================= */
+
+.building3d-flats-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 21px 0 10px;
+}
+
+.building3d-flats-heading h4 {
+  margin: 0;
+  font-size: 12px;
+}
+
+.building3d-flats-heading > span {
+  color: #87969d;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+/* =========================================
+   FLATS LIST
+========================================= */
+
+.building3d-flat-list {
+  display: grid;
+  gap: 7px;
+  max-height: 255px;
+  overflow: auto;
+  padding: 1px 3px 1px 1px;
+}
+
+.building3d-flat-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #edf1f3;
+  border-radius: 12px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.building3d-flat-row:hover,
+.building3d-flat-row.is-active {
+  border-color: #a9ded2;
+  background: #f5fbf9;
+}
+
+.building3d-flat-row.is-active {
+  box-shadow: 0 0 0 1px rgba(69, 185, 159, 0.08);
+}
+
+.building3d-flat-row:focus-visible {
+  outline: 2px solid #45b99f;
+  outline-offset: 2px;
+}
+
+.building3d-flat-symbol {
+  display: grid;
+  place-items: center;
+  flex: 0 0 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: #f0f5f6;
+  color: #5c7a82;
+  font-size: 17px;
+}
+
+.building3d-flat-name {
+  display: grid;
+  flex: 1;
+  gap: 5px;
+  min-width: 0;
+}
+
+.building3d-flat-name strong {
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.building3d-flat-name small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #829199;
+  font-size: 9px;
+}
+
+.building3d-flat-name i.offline {
+  background: #e5a34c;
+}
+
+/* =========================================
+   FLAT LOAD, ENERGY AND COST
+========================================= */
+
+.building3d-flat-load {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.building3d-flat-metrics {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  min-width: 0;
+  text-align: right;
+}
+
+.building3d-flat-metrics > strong {
+  color: #17364b;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.building3d-flat-metrics > strong small {
+  color: #788992;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.building3d-flat-metrics > small {
+  color: #71828d;
+  font-size: 10px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* =========================================
+   SELECTED FLAT DETAILS
+========================================= */
+
+.building3d-selected-flat {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f2f8f7;
+}
+
+.building3d-selected-flat strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.building3d-selected-flat p {
+  margin: 5px 0 0;
+  color: #788992;
+  font-size: 10px;
+}
+
+/* =========================================
+   TABLET / NARROW LAYOUT
+========================================= */
+
+@media (max-width: 850px) {
+  .building3d-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .building3d-viewer,
+  .building3d-viewer canvas {
+    min-height: 430px;
+  }
+
+  .building3d-details {
+    border-top: 1px solid #edf1f3;
+    border-left: 0;
+  }
+
+  .building3d-empty {
+    min-height: 220px;
+  }
+}
+
+/* =========================================
+   MOBILE LAYOUT
+========================================= */
+
+@media (max-width: 520px) {
+  .building3d-card {
+    border-radius: 16px;
+  }
+
+  .building3d-header {
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .building3d-header h2 {
+    font-size: 18px;
+  }
+
+  .building3d-live {
+    align-self: flex-start;
+  }
+
+  .building3d-viewer,
+  .building3d-viewer canvas {
+    min-height: 360px;
+  }
+
+  .building3d-details {
+    padding: 17px;
+  }
+
+  .building3d-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .building3d-stat-card {
+    padding: 11px;
+  }
+
+  .building3d-stat-card strong {
+    font-size: 14px;
+  }
+
+  .building3d-flat-row {
+    gap: 8px;
+    padding: 9px 8px;
+  }
+
+  .building3d-flat-symbol {
+    flex-basis: 29px;
+    height: 29px;
+  }
+
+  .building3d-flat-metrics > small {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 360px) {
+  .building3d-stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .building3d-flat-row {
+    flex-wrap: wrap;
+  }
+
+  .building3d-flat-metrics {
+    margin-left: auto;
+  }
+}

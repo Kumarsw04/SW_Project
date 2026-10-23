@@ -1,0 +1,435 @@
+.today-page {
+  --today-bg: #101416;
+  --today-panel: rgba(25, 30, 33, 0.58);
+  --today-border: rgba(210, 220, 225, 0.16);
+  --today-text: #f3f4f4;
+  --today-muted: #929ba1;
+  --today-gold: #e8c578;
+  --today-green: #83b5a4;
+  --today-red: #e69c8f;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+  padding: 24px;
+  color: var(--today-text);
+  font-family: inherit;
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(131, 181, 164, 0.07), transparent 38%),
+    radial-gradient(ellipse at 88% 8%, rgba(232, 197, 120, 0.06), transparent 34%),
+    var(--today-bg);
+}
+
+.today-page *,
+.today-page *::before,
+.today-page *::after {
+  box-sizing: border-box;
+}
+
+.today-page h1,
+.today-page h2,
+.today-page p {
+  margin: 0;
+}
+
+.today-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  min-width: 0;
+}
+
+.today-eyebrow {
+  margin-bottom: 8px;
+  color: var(--today-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.today-header h1 {
+  font-size: clamp(25px, 2vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+
+.today-header > div:first-child > p {
+  margin-top: 7px;
+  color: var(--today-muted);
+  font-size: 13px;
+}
+
+.today-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid rgba(131, 181, 164, 0.25);
+  border-radius: 20px;
+  background: rgba(131, 181, 164, 0.09);
+  color: var(--today-green);
+  font-size: 11px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.live-dot,
+.status-dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--today-green);
+}
+
+.live-dot {
+  box-shadow: 0 0 10px rgba(131, 181, 164, 0.6);
+}
+
+.today-date {
+  color: var(--today-muted);
+  font-size: 11px;
+}
+
+.today-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.section-heading h2 {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.section-heading p {
+  margin-top: 5px;
+  color: var(--today-muted);
+  font-size: 12px;
+}
+
+.section-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--today-muted);
+  font-size: 11px;
+}
+
+/* Shared glass panel base used by dashboard components */
+.today-panel {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  padding: 18px;
+  border: 1px solid var(--today-border);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012) 48%, transparent 75%),
+    var(--today-panel);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  margin-bottom: 18px;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.panel-title h2 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.panel-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.065);
+  color: var(--today-gold);
+}
+
+.subtle-count {
+  color: var(--today-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.today-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid var(--today-border);
+  color: var(--today-muted);
+  font-size: 10px;
+}
+
+@media (max-width: 1199px) {
+  .today-page {
+    gap: 16px;
+    padding: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .today-page {
+    gap: 14px;
+    padding: 12px;
+  }
+
+  .today-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .today-header-right {
+    align-items: flex-start;
+  }
+
+  .today-panel {
+    padding: 13px;
+  }
+
+  .panel-heading {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .panel-title {
+    gap: 8px;
+  }
+
+  .panel-title h2 {
+    font-size: 12px;
+  }
+
+  .panel-icon {
+    width: 29px;
+    height: 29px;
+  }
+
+  .today-footer {
+    flex-direction: column;
+  }
+}
+
+
+/* Tower and Common Live + Needs Your Decision */
+.today-tower-decision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+  width: 100%;
+  min-width: 0;
+}
+
+.today-tower-decision-grid > * {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Prevent component-specific grid spans from interfering */
+.today-tower-decision-grid .model-panel,
+.today-tower-decision-grid .decision-panel {
+  grid-column: auto;
+}
+
+/* Stack vertically on smaller screens */
+@media (max-width: 768px) {
+  .today-tower-decision-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+
+/* Supply to Society Now + October Spends vs Budget */
+.today-supply-budget-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+  width: 100%;
+  min-width: 0;
+}
+
+.today-supply-budget-grid > * {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Prevent existing component grid spans from interfering */
+.today-supply-budget-grid .supply-panel,
+.today-supply-budget-grid .budget-panel {
+  grid-column: auto;
+}
+
+/* Stack vertically on smaller screens */
+@media (max-width: 768px) {
+  .today-supply-budget-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+
+/* Diesel Generator + Society Load Today */
+.today-generator-load-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+  width: 100%;
+  min-width: 0;
+}
+
+.today-generator-load-grid > * {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Override the actual component classes */
+.today-generator-load-grid .generator-panel,
+.today-generator-load-grid .load-panel {
+  grid-column: auto !important;
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .today-generator-load-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+
+/* Supply to Society Now + All Flats Live Load */
+.today-supply-flats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+  width: 100%;
+  min-width: 0;
+}
+
+.today-supply-flats-grid > * {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Override existing component grid spans */
+.today-supply-flats-grid .supply-panel,
+.today-supply-flats-grid .flats-panel {
+  grid-column: auto;
+}
+
+/* Stack on smaller screens */
+@media (max-width: 768px) {
+  .today-supply-flats-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+
+/* What's happening now + Common areas */
+.today-activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+  width: 100%;
+  min-width: 0;
+}
+
+.today-activity-grid > * {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Override component-specific grid spans */
+.today-activity-grid .activity-panel,
+.today-activity-grid .common-panel {
+  grid-column: auto;
+}
+
+/* Stack on mobile */
+@media (max-width: 768px) {
+  .today-activity-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Highest Use Flat + Weather side-by-side */
+.today-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+  width: 100%;
+  min-width: 0;
+}
+
+.today-bottom-grid > * {
+  min-width: 0;
+}
+
+/* Override component-specific grid spans inside this wrapper */
+.today-bottom-grid .highest-flat-panel,
+.today-bottom-grid .weather-panel {
+  grid-column: auto;
+  width: 100%;
+}
+
+/* Stack vertically on tablets and mobile */
+@media (max-width: 768px) {
+  .today-bottom-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}

@@ -1,0 +1,179 @@
+/* CommonAreas.css — matched to CommonAreas.tsx */
+
+.common-panel {
+  min-width: 0;
+}
+
+.common-area-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.common-area-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--today-border, rgba(255, 255, 255, 0.1));
+  border-radius: 13px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.025)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color 180ms ease, background 180ms ease,
+    transform 180ms ease;
+}
+
+.common-area-item:hover {
+  border-color: rgba(232, 197, 120, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.common-area-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(232, 197, 120, 0.17);
+  border-radius: 11px;
+  background: rgba(232, 197, 120, 0.09);
+  color: var(--today-gold, #e8c578);
+}
+
+.common-area-details {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.common-area-details h3 {
+  margin: 0;
+  color: var(--today-text, #f3f4f4);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.common-area-details p {
+  margin: 0;
+  color: var(--today-muted, #929ba1);
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.common-area-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 10px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.common-area-status .status-dot {
+  display: inline-block;
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.common-area-status.status-online {
+  border-color: rgba(131, 181, 164, 0.18);
+  background: rgba(131, 181, 164, 0.09);
+  color: var(--today-green, #83b5a4);
+}
+
+.common-area-status.status-online .status-dot {
+  background: var(--today-green, #83b5a4);
+  box-shadow: 0 0 7px rgba(131, 181, 164, 0.35);
+}
+
+.common-area-status.status-warning {
+  border-color: rgba(232, 173, 105, 0.2);
+  background: rgba(232, 173, 105, 0.09);
+  color: #e8ad69;
+}
+
+.common-area-status.status-warning .status-dot {
+  background: #e8ad69;
+  box-shadow: 0 0 7px rgba(232, 173, 105, 0.3);
+}
+
+.common-area-status.status-offline {
+  border-color: rgba(230, 156, 143, 0.2);
+  background: rgba(230, 156, 143, 0.09);
+  color: var(--today-red, #e69c8f);
+}
+
+.common-area-status.status-offline .status-dot {
+  background: var(--today-red, #e69c8f);
+  box-shadow: 0 0 7px rgba(230, 156, 143, 0.3);
+}
+
+.common-area-footer {
+  margin-top: 13px;
+  padding-top: 12px;
+  border-top: 1px solid var(--today-border, rgba(255, 255, 255, 0.1));
+  color: var(--today-muted, #929ba1);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+@media (min-width: 1200px) {
+  .common-panel {
+    grid-column: span 5;
+  }
+}
+@media (max-width: 640px) {
+  .common-area-item {
+    align-items: flex-start;
+    gap: 9px;
+    padding: 10px;
+  }
+
+  .common-area-icon {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .common-area-status {
+    gap: 5px;
+    padding: 5px 6px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 390px) {
+  .common-area-item {
+    flex-wrap: wrap;
+  }
+
+  .common-area-status {
+    margin-left: 43px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .common-area-item {
+    transition: none;
+  }
+}
