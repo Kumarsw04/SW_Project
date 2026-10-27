@@ -48,31 +48,40 @@ export function useDemoData() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const controller = new AbortController();
+    let cancelled = false;
+    let timer: ReturnType<typeof setInterval>;
 
     async function loadData() {
       try {
-        setLoading(true);
         setError(null);
 
         const records = await fetchInfluxRecords();
 
-        if (controller.signal.aborted) return;
+        if (cancelled) return;
 
         if (records.length === 0) {
           throw new Error(
-            "InfluxDB returned no matching electrical records in the last 30 days."
+            "InfluxDB returned no matching electrical records."
           );
         }
 
-        const kpi_summary: DemoKPI[] = KPI_CONFIG.map((config) => {
-          const values = records
-            .map((record) => record[config.metric])
-            .filter((value): value is number => typeof value === "number" && Number.isFinite(value) );
+        const sortedRecords = [...records].sort(
+          (a, b) => Date.parse(a._time) - Date.parse(b._time)
+        );
 
-          const latest = [...records]
-            .sort((a, b) => Date.parse(b._time) - Date.parse(a._time))
-            .find((record) => typeof record[config.metric] === "number");
+        const kpi_summary: DemoKPI[] = KPI_CONFIG.map((config) => {
+          const values = sortedRecords
+            .map((record) => record[config.metric])
+            .filter(
+              (value): value is number =>
+                typeof value === "number" && Number.isFinite(value)
+            );
+
+          const latest = [...sortedRecords]
+            .reverse()
+            .find(
+              (record) => typeof record[config.metric] === "number"
+            );
 
           return {
             ...config,
@@ -83,7 +92,8 @@ export function useDemoData() {
             minimum: values.length ? Math.min(...values) : null,
             maximum: values.length ? Math.max(...values) : null,
             average: values.length
-              ? values.reduce((sum, value) => sum + value, 0) / values.length
+              ? values.reduce((sum, value) => sum + value, 0) /
+                values.length
               : null,
           };
         });
@@ -95,27 +105,33 @@ export function useDemoData() {
           record_count: records.length,
           source_field_reading_count: records.length,
           time_range_utc: {
-            start: records[0]._time,
-            end: records[records.length - 1]._time,
+            start: sortedRecords[0]._time,
+            end: sortedRecords[sortedRecords.length - 1]._time,
           },
           kpi_summary,
           dashboard_feature_map: [],
-          records,
+          records: sortedRecords,
         });
       } catch (err) {
-        if (controller.signal.aborted) return;
+        if (cancelled) return;
 
         setError(
           err instanceof Error ? err.message : "Unable to load InfluxDB data."
         );
       } finally {
-        if (!controller.signal.aborted) setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     }
 
+    setLoading(true);
     loadData();
 
-    return () => controller.abort();
+    timer = setInterval(loadData, 5_000);
+
+    return () => {
+      cancelled = true;
+      clearInterval(timer);
+    };
   }, []);
 
   return { data, loading, error };
