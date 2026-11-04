@@ -11,6 +11,8 @@ export interface InfluxRecord {
   channel_id: string;
   channel_role: string;
   supply_source: string;
+
+  // Dashboard-compatible properties
   active_power_kw?: number;
   apparent_power_kva?: number;
   voltage_rms_v?: number;
@@ -22,6 +24,18 @@ export interface InfluxRecord {
   export_energy_kwh?: number;
   enclosure_temperature_c?: number;
   measurement_valid?: boolean;
+
+  // Actual InfluxDB power fields
+  active_power_a_kw?: number;
+  active_power_b_kw?: number;
+  active_power_c_kw?: number;
+  total_active_power_kw?: number;
+
+  apparent_power_a_kva?: number;
+  apparent_power_b_kva?: number;
+  apparent_power_c_kva?: number;
+  total_apparent_power_kva?: number;
+
   [key: string]: string | number | boolean | undefined;
 }
 
@@ -57,46 +71,23 @@ export async function fetchInfluxRecords(): Promise<InfluxRecord[]> {
     throw new Error("Missing InfluxDB environment variables.");
   }
 
-  const fields = [
-    "active_power_kw",
-    "apparent_power_kva",
-    "voltage_rms_v",
-    "current_rms_a",
-    "frequency_hz",
-    "power_factor",
-    "reactive_power_kvar",
-    "import_energy_kwh",
-    "export_energy_kwh",
-    "enclosure_temperature_c",
-    "measurement_valid",
-  ];
-  
-  
+  // Read all fields from the selected measurement.
   const query = `
     from(bucket: "${bucket}")
-    |> range(start: -15m)
-    |> filter(fn: (r) => r._measurement == "erg_telemetry")
-    |> filter(fn: (r) =>
-      r._field == "active_power_kw" or
-      r._field == "apparent_power_kva" or
-      r._field == "voltage_rms_v" or
-      r._field == "current_rms_a" or
-      r._field == "frequency_hz" or
-      r._field == "power_factor" or
-      r._field == "reactive_power_kvar" or
-      r._field == "import_energy_kwh" or
-      r._field == "export_energy_kwh" or
-      r._field == "enclosure_temperature_c" or
-      r._field == "measurement_valid"
-    )
-    |> group(columns: ["device_id", "channel_id", "channel_role", "_measurement", "_field"])
-    |> sort(columns: ["_time"], desc: true)
-    |> limit(n: 100)
+      |> range(start: -15m)
+      |> filter(fn: (r) => r._measurement == "erg_telemetry")
+      |> group(columns: [
+        "device_id",
+        "channel_id",
+        "channel_role",
+        "_measurement",
+        "_field"
+      ])
+      |> sort(columns: ["_time"], desc: true)
   `;
 
-
-
   const baseUrl = url.replace(/\/+$/, "");
+
   const response = await fetch(
     `${baseUrl}/api/v2/query?org=${encodeURIComponent(org)}`,
     {
@@ -117,7 +108,7 @@ export async function fetchInfluxRecords(): Promise<InfluxRecord[]> {
   }
 
   const csv = await response.text();
-  console.log("InfluxDB raw response:", JSON.stringify(csv));
+
   console.log("InfluxDB response length:", csv.length);
 
   const records = new Map<string, InfluxRecord>();
@@ -128,7 +119,6 @@ export async function fetchInfluxRecords(): Promise<InfluxRecord[]> {
 
     const values = parseCsvLine(line);
 
-    // InfluxDB CSV responses can contain a header for each result table.
     if (values[0] === "" && values[1] === "result") {
       headers = values;
       continue;
@@ -171,14 +161,45 @@ export async function fetchInfluxRecords(): Promise<InfluxRecord[]> {
       supply_source: supplySource,
     };
 
-    if (field === "measurement_valid") {
-      record.measurement_valid = rawValue === "true";
-    } else if (fields.includes(field)) {
-      const number = Number(rawValue);
-
-      if (Number.isFinite(number)) {
-        record[field] = number;
+    // Preserve all available tags and metadata.
+    for (const [column, value] of Object.entries(row)) {
+      if (
+        ![
+          "_time",
+          "_measurement",
+          "_field",
+          "_value",
+          "result",
+          "table",
+          "_start",
+          "_stop",
+        ].includes(column) &&
+        value !== undefined &&
+        value !== ""
+      ) {
+        record[column] = value;
       }
+    }
+
+    // Preserve numeric, boolean and string field values.
+    if (rawValue === "true" || rawValue === "false") {
+      record[field] = rawValue === "true";
+    } else {
+      const numericValue = Number(rawValue);
+
+      record[field] =
+        rawValue.trim() !== "" && Number.isFinite(numericValue)
+          ? numericValue
+          : rawValue;
+    }
+
+    // Map actual InfluxDB total measurements to existing dashboard names.
+    if (field === "total_active_power_kw") {
+      record.active_power_kw = Number(rawValue);
+    }
+
+    if (field === "total_apparent_power_kva") {
+      record.apparent_power_kva = Number(rawValue);
     }
 
     records.set(key, record);
@@ -187,12 +208,21 @@ export async function fetchInfluxRecords(): Promise<InfluxRecord[]> {
   const result = [...records.values()].sort(
     (a, b) => Date.parse(a._time) - Date.parse(b._time)
   );
+
   console.log("InfluxDB telemetry records:", result.length);
 
   console.log(
     "Latest InfluxDB timestamp:",
     result.length ? result[result.length - 1]._time : "No records"
   );
+
+  console.log("Latest power readings:", result.slice(-5).map((record) => ({
+    time: record._time,
+    active_power_kw: record.active_power_kw,
+    total_active_power_kw: record.total_active_power_kw,
+    apparent_power_kva: record.apparent_power_kva,
+    total_apparent_power_kva: record.total_apparent_power_kva,
+  })));
 
   return result;
 }

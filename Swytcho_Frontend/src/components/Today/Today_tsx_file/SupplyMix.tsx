@@ -9,18 +9,36 @@ import "../Today_css_file/SupplyMix.css";
 export default function SupplyMix() {
   const { data, loading, error } = useDemoData();
 
-  const latest = useMemo(() => {
+  // Find the latest valid reading independently for both measurements.
+  const latestReadings = useMemo(() => {
     const records = [...(data?.records ?? [])]
       .filter((record) => record.measurement_valid !== false)
       .sort(
-        (a, b) => Date.parse(a._time) - Date.parse(b._time)
+        (a, b) => Date.parse(b._time) - Date.parse(a._time)
       );
 
-    return records[records.length - 1];
+    const activeRecord = records.find(
+      (record) =>
+        typeof record.active_power_kw === "number" &&
+        Number.isFinite(record.active_power_kw)
+    );
+
+    const apparentRecord = records.find(
+      (record) =>
+        typeof record.apparent_power_kva === "number" &&
+        Number.isFinite(record.apparent_power_kva)
+    );
+
+    return {
+      activePower: activeRecord?.active_power_kw,
+      apparentPower: apparentRecord?.apparent_power_kva,
+      activeTime: activeRecord?._time,
+      apparentTime: apparentRecord?._time,
+    };
   }, [data]);
 
-  const power = latest?.active_power_kw;
-  const apparentPower = latest?.apparent_power_kva;
+  const power = latestReadings.activePower;
+  const apparentPower = latestReadings.apparentPower;
 
   const hasPower =
     typeof power === "number" && Number.isFinite(power);
@@ -29,47 +47,83 @@ export default function SupplyMix() {
     typeof apparentPower === "number" &&
     Number.isFinite(apparentPower);
 
-  const option = useMemo(
+  const hasData = hasPower || hasApparentPower;
+
+  // Circular chart represents Total Active Power only.
+ const option = useMemo(
     () => ({
       backgroundColor: "transparent",
+
       tooltip: {
         trigger: "item",
         backgroundColor: "#202528",
         borderColor: "#42494e",
         textStyle: { color: "#f5f5f5" },
-        formatter: "{b}: {c} kW",
-      },
-      legend: { show: false },
-      series: [
-        {
-          name: "Active power",
-          type: "pie",
-          radius: ["65%", "84%"],
-          center: ["50%", "50%"],
-          label: { show: false },
-          itemStyle: {
-            borderColor: "#15191c",
-            borderWidth: 4,
-          },
-          data: [
-            {
-              name: "Active power",
-              value: hasPower ? power : 0,
-              itemStyle: { color: "#e8c578" },
-            },
-          ],
+        formatter: (params: { seriesName: string }) => {
+          if (params.seriesName === "Total Active Power") {
+            return `Total Active Power: ${
+              hasPower ? `${power.toFixed(3)} kW` : "Unavailable"
+            }`;
+          }
+
+          return `Total Apparent Power: ${
+            hasApparentPower
+              ? `${apparentPower.toFixed(3)} kVA`
+              : "Unavailable"
+          }`;
         },
+      },
+
+      legend: { show: false },
+
+      series: [
+        ...(hasPower
+          ? [
+              {
+                name: "Total Active Power",
+                type: "pie",
+                radius: ["76%", "90%"],
+                center: ["50%", "50%"],
+                silent: false,
+                label: { show: false },
+                data: [
+                  {
+                    name: "Total Active Power",
+                    value: 1,
+                    itemStyle: { color: "#e8c578" },
+                  },
+                ],
+              },
+            ]
+          : []),
+
+        ...(hasApparentPower
+          ? [
+              {
+                name: "Total Apparent Power",
+                type: "pie",
+                radius: ["56%", "69%"],
+                center: ["50%", "50%"],
+                silent: false,
+                label: { show: false },
+                data: [
+                  {
+                    name: "Total Apparent Power",
+                    value: 1,
+                    itemStyle: { color: "#8ca8c8" },
+                  },
+                ],
+              },
+            ]
+          : []),
       ],
     }),
-    [power, hasPower]
+    [power, apparentPower, hasPower, hasApparentPower]
   );
 
-  const showSkeleton =
-    loading ||
-    (!data && !error) ||
-    (!hasPower && !hasApparentPower && !error);
+  console.log("SupplyMix readings:", latestReadings);
 
-  if (showSkeleton || error || (!hasPower && !hasApparentPower)) {
+  if (loading || (!data && !error)) {
     return (
       <section className="today-panel supply-panel">
         <div className="panel-heading">
@@ -80,46 +134,38 @@ export default function SupplyMix() {
             <h2>Electrical Power Overview</h2>
           </div>
 
-          <span className="section-status">
-            {error ? "Data unavailable" : "Loading"}
-          </span>
+          <span className="section-status">Loading</span>
         </div>
 
         <div className="supply-layout">
           <div className="supply-chart">
-            <div
-              className="supply-skeleton supply-skeleton-chart"
-              role="status"
-              aria-label="Loading electrical power readings"
-            />
+            <div className="supply-skeleton supply-skeleton-chart" />
           </div>
 
           <div className="supply-legend">
-            <div className="legend-item">
-              <span
-                className="legend-dot"
-                style={{ backgroundColor: "#e8c578" }}
-              />
-              <div>
-                <div className="supply-skeleton supply-skeleton-value" />
-                <div className="supply-skeleton supply-skeleton-line" />
-              </div>
-            </div>
-
-            <div className="legend-item">
-              <span
-                className="legend-dot"
-                style={{ backgroundColor: "#8ca8c8" }}
-              />
-              <div>
-                <div className="supply-skeleton supply-skeleton-value" />
-                <div className="supply-skeleton supply-skeleton-line" />
-              </div>
-            </div>
-
-            <div className="supply-skeleton supply-skeleton-note" />
+            <div className="supply-skeleton supply-skeleton-value" />
+            <div className="supply-skeleton supply-skeleton-line" />
           </div>
         </div>
+      </section>
+    );
+  }
+
+  if (error || !hasData) {
+    return (
+      <section className="today-panel supply-panel">
+        <div className="panel-heading">
+          <div className="panel-title">
+            <span className="panel-icon">
+              <Plug size={18} />
+            </span>
+            <h2>Electrical Power Overview</h2>
+          </div>
+
+          <span className="section-status">Data unavailable</span>
+        </div>
+
+        <p>{error || "Waiting for electrical readings."}</p>
       </section>
     );
   }
@@ -143,19 +189,28 @@ export default function SupplyMix() {
             <>
               <ReactECharts
                 option={option}
-                style={{ height: 210, width: "100%" }}
+                style={{ height: 230, width: "100%" }}
                 notMerge
                 lazyUpdate
               />
 
               <div className="supply-chart-center">
-                <strong>{power.toFixed(3)} kW</strong>
-                <span>Active power</span>
+                <strong>
+                  {hasPower ? `${power.toFixed(3)} kW` : "—"}
+                </strong>
+                <span>Total Active Power</span>
+
+                <strong>
+                  {hasApparentPower
+                      ? `${apparentPower.toFixed(3)} kVA`
+                      : "—"}
+                </strong>
+                <span>Total Apparent Power</span>
               </div>
             </>
           ) : (
             <div className="supply-chart-center">
-              <strong>—</strong>
+              <strong>-</strong>
               <span>Active power unavailable</span>
             </div>
           )}
@@ -167,9 +222,12 @@ export default function SupplyMix() {
               className="legend-dot"
               style={{ backgroundColor: "#e8c578" }}
             />
+
             <div>
-              <strong>Active Power</strong>
-              <span>{hasPower ? `${power.toFixed(3)} kW` : "—"}</span>
+              <strong>Total Active Power</strong>
+              <span>
+                {hasPower ? `${power.toFixed(3)} kW` : "—"}
+              </span>
             </div>
           </div>
 
@@ -178,8 +236,9 @@ export default function SupplyMix() {
               className="legend-dot"
               style={{ backgroundColor: "#8ca8c8" }}
             />
+
             <div>
-              <strong>Apparent Power</strong>
+              <strong>Total Apparent Power</strong>
               <span>
                 {hasApparentPower
                   ? `${apparentPower.toFixed(3)} kVA`
@@ -189,8 +248,8 @@ export default function SupplyMix() {
           </div>
 
           <p className="supply-note">
-            Active power measures real electrical power consumed.
-            Apparent power represents the combined voltage-current
+            Total active power represents real electrical power consumed.
+            Total apparent power represents the combined voltage-current
             power magnitude.
           </p>
         </div>

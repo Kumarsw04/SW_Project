@@ -1,0 +1,260 @@
+
+/* =========================================
+   SUPPLY VOLTAGE TREND
+   SWYTCHO DARK THEME
+========================================= */
+
+.supply-voltage-card {
+  width: 100%;
+  min-width: 0;
+  padding: 18px;
+  box-sizing: border-box;
+
+  background: #1b2022;
+  border: 1px solid #343b3f;
+  border-radius: 12px;
+
+  color: #f1f1ef;
+}
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.svt-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.svt-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.svt-title-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e8c578;
+}
+
+.svt-title h2 {
+  margin: 0;
+  color: #f1f1ef;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* =========================================
+   INFORMATION BUTTON
+========================================= */
+
+.svt-info-button {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #42494e;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #e8c578;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.svt-info-button:hover {
+  background: rgba(232, 197, 120, 0.1);
+  border-color: #e8c578;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.svt-description {
+  margin: 8px 0 12px;
+  color: #969fa3;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   CHART CONTAINER
+========================================= */
+
+.svt-chart-container {
+  width: 100%;
+  height: 290px;
+  min-width: 0;
+  position: relative;
+
+  background: #151a1c;
+  border: 1px solid #343b3f;
+  border-radius: 9px;
+
+  overflow: hidden;
+}
+
+.svt-chart-container .echarts-for-react {
+  width: 100%;
+  height: 100%;
+}
+
+.svt-chart-container canvas {
+  max-width: 100%;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.svt-empty-state {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  text-align: center;
+
+  color: #969fa3;
+  font-size: 13px;
+
+  background: rgba(21, 26, 28, 0.55);
+  pointer-events: none;
+}
+
+/* =========================================
+   SKELETON LOADING
+========================================= */
+
+.svt-skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 22px 24px 25px;
+  box-sizing: border-box;
+
+  background: #151a1c;
+}
+
+.svt-skeleton-line {
+  height: 1px;
+  width: 100%;
+  border-radius: 4px;
+  background: #343b3f;
+  opacity: 0.75;
+}
+
+.svt-skeleton-line:nth-child(2) {
+  opacity: 0.6;
+}
+
+.svt-skeleton-line:nth-child(3) {
+  opacity: 0.45;
+}
+
+.svt-skeleton-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.svt-skeleton-label {
+  height: 10px;
+  width: 65px;
+  border-radius: 5px;
+}
+
+.svt-skeleton-label.short {
+  width: 38px;
+}
+
+.svt-skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #242a2d 0%,
+    #343b3f 45%,
+    #242a2d 100%
+  );
+
+  background-size: 200% 100%;
+  animation: svt-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes svt-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 768px) {
+  .supply-voltage-card {
+    padding: 15px;
+  }
+
+  .svt-chart-container {
+    height: 260px;
+  }
+
+  .svt-title h2 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .supply-voltage-card {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .svt-title h2 {
+    font-size: 13px;
+  }
+
+  .svt-description {
+    font-size: 12px;
+  }
+
+  .svt-chart-container {
+    height: 230px;
+  }
+
+  .svt-skeleton {
+    padding: 18px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svt-skeleton-shimmer {
+    animation: none;
+  }
+}

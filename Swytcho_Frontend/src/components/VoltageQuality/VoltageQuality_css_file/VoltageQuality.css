@@ -1,0 +1,279 @@
+
+/* =========================================
+   VOLTAGE QUALITY HEADER
+   SWYTCHO DARK THEME
+========================================= */
+
+.voltage-quality {
+  width: 100%;
+  padding: 18px 20px 14px;
+  box-sizing: border-box;
+  background: #121819;
+  color: #f1f1ef;
+  border-bottom: 1px dashed #42494e;
+}
+
+/* Top Row */
+
+.vqh-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 5px;
+}
+
+/* Breadcrumb */
+
+.vqh-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-style: italic;
+  color: #969fa3;
+}
+
+.vqh-separator {
+  color: #626b70;
+}
+
+/* Action Buttons */
+
+.vqh-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.vqh-action-btn,
+.vqh-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 11px;
+  border: 1px solid #42494e;
+  border-radius: 8px;
+  background: #1b2022;
+  color: #f1f1ef;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vqh-action-btn:hover,
+.vqh-expand-btn:hover {
+  border-color: #e8c578;
+  color: #e8c578;
+  background: #252a2c;
+}
+
+.vqh-expand-btn {
+  width: 34px;
+  padding: 0;
+}
+
+/* Title */
+
+.vqh-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.vqh-title-row h1 {
+  margin: 0;
+  font-size: 29px;
+  line-height: 1.3;
+  font-weight: 650;
+  color: #f1f1ef;
+}
+
+/* Included Badge */
+
+.vqh-included-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid #77715e;
+  border-radius: 20px;
+  font-size: 11px;
+  color: #e8c578;
+  background: rgba(232, 197, 120, 0.07);
+}
+
+/* Roles */
+
+.vqh-roles {
+  color: #969fa3;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+
+/* Description */
+
+.vqh-description {
+  margin: 9px 0 10px;
+  font-size: 14px;
+  color: #b3b9ba;
+}
+
+/* Status Banners */
+
+.vqh-status-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #969fa3;
+}
+
+.vqh-status-item {
+  color: #e8c578;
+}
+
+.vqh-status-separator {
+  color: #626b70;
+}
+
+/* Responsive */
+
+@media (max-width: 650px) {
+  .voltage-quality-header {
+    padding: 14px;
+  }
+
+  .vqh-top-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vqh-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .vqh-title-row {
+    gap: 8px;
+  }
+
+  .vqh-title-row h1 {
+    font-size: 24px;
+  }
+
+  .vqh-roles {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .vqh-action-btn {
+    padding: 0 8px;
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   VOLTAGE QUALITY PAGE LAYOUT
+========================================= */
+
+.voltage-page {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Sections 2 and 3 */
+
+.voltage-quality-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+  padding: 16px;
+}
+
+/* Allow both cards to fit their grid columns */
+
+.voltage-quality-grid > * {
+  min-width: 0;
+}
+
+/* Responsive layout */
+
+@media (max-width: 900px) {
+  .voltage-quality-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================
+   VOLTAGE QUALITY - THREE CARD GRID
+========================================= */
+
+.voltage-quality-three-grid {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+
+  padding: 0 16px 16px;
+  align-items: stretch;
+}
+
+/* Prevent cards from expanding beyond columns */
+
+.voltage-quality-three-grid > .phase-balance-card,
+.voltage-quality-three-grid > .flats-edge-card,
+.voltage-quality-three-grid > .power-factor-card {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Tablet */
+
+@media (max-width: 1050px) {
+  .voltage-quality-three-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .voltage-quality-three-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* =========================================
+   VOLTAGE QUALITY BOTTOM GRID
+========================================= */
+
+.voltage-quality-bottom-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 14px;
+  padding: 0 16px 16px;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+.voltage-quality-bottom-grid > * {
+  min-width: 0;
+}
+
+@media (max-width: 800px) {
+  .voltage-quality-bottom-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

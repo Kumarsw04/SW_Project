@@ -1,0 +1,279 @@
+
+/* =========================================
+   RISER VOLTAGE POSITION
+   SWYTCHO DARK THEME
+========================================= */
+
+.riser-position-card {
+  width: 100%;
+  min-width: 0;
+  padding: 16px;
+  box-sizing: border-box;
+
+  background: #1b2022;
+  border: 1px solid #343b3f;
+  border-radius: 12px;
+
+  color: #f1f1ef;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.riser-position-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.riser-position-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.riser-position-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e8c578;
+}
+
+.riser-position-title h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f1f1ef;
+}
+
+.riser-position-info {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #42494e;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #e8c578;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.riser-position-info:hover {
+  border-color: #e8c578;
+  background: rgba(232, 197, 120, 0.1);
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.riser-position-description {
+  margin: 8px 0 12px;
+  color: #969fa3;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   RISER LIST
+========================================= */
+
+.riser-position-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.riser-position-row {
+  display: grid;
+  grid-template-columns: 120px minmax(60px, 1fr) 65px;
+  align-items: center;
+  gap: 12px;
+}
+
+.riser-position-name {
+  color: #f1f1ef;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================
+   VOLTAGE TRACK
+========================================= */
+
+.riser-voltage-track {
+  width: 100%;
+  height: 12px;
+
+  background: #111618;
+  border: 1px solid #42494e;
+  border-radius: 4px;
+
+  overflow: hidden;
+}
+
+.riser-voltage-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.riser-voltage-safe {
+  background: #e8c578;
+}
+
+.riser-voltage-warning {
+  background: #e07868;
+}
+
+/* =========================================
+   VOLTAGE VALUE
+========================================= */
+
+.riser-position-value {
+  color: #969fa3;
+  font-size: 12px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.riser-value-warning {
+  color: #e07868;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.riser-position-empty {
+  padding: 20px 10px;
+  text-align: center;
+  color: #969fa3;
+  font-size: 13px;
+}
+
+/* =========================================
+   SKELETON LOADING
+========================================= */
+
+.riser-skeleton-row {
+  display: grid;
+  grid-template-columns: 120px minmax(60px, 1fr) 65px;
+  align-items: center;
+  gap: 12px;
+}
+
+.riser-skeleton-name {
+  width: 65px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.riser-skeleton-track {
+  width: 100%;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.riser-skeleton-value {
+  width: 38px;
+  height: 12px;
+  justify-self: end;
+  border-radius: 4px;
+}
+
+.riser-shimmer {
+  background: linear-gradient(
+    90deg,
+    #242a2d 0%,
+    #343b3f 45%,
+    #242a2d 100%
+  );
+  background-size: 200% 100%;
+  animation: riser-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes riser-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* =========================================
+   API REFERENCE
+========================================= */
+
+.riser-api-reference {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  margin-top: 14px;
+  padding-top: 10px;
+
+  border-top: 1px dashed #42494e;
+}
+
+.riser-api-reference code {
+  color: #a2a8ac;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.riser-api-lightning {
+  color: #e8c578;
+  font-size: 16px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+  .riser-position-card {
+    padding: 13px;
+  }
+
+  .riser-position-title h2 {
+    font-size: 14px;
+  }
+
+  .riser-position-row,
+  .riser-skeleton-row {
+    grid-template-columns: 85px minmax(50px, 1fr) 60px;
+    gap: 8px;
+  }
+
+  .riser-position-name {
+    font-size: 12px;
+  }
+
+  .riser-position-value {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .riser-shimmer,
+  .riser-voltage-fill {
+    animation: none;
+    transition: none;
+  }
+}

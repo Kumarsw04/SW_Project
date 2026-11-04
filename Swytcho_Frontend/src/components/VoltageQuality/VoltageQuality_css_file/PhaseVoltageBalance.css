@@ -1,0 +1,129 @@
+
+.phase-balance-card {
+  min-width: 0;
+  padding: 14px;
+  background: #1b2022;
+  border: 1px solid #343b3f;
+  border-radius: 12px;
+  color: #f1f1ef;
+}
+
+.phase-heading,
+.phase-title {
+  display: flex;
+  align-items: center;
+}
+
+.phase-heading {
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.phase-title {
+  gap: 9px;
+}
+
+.phase-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e8c578;
+}
+
+.phase-title h2 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.phase-info {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #42494e;
+  border-radius: 50%;
+  background: transparent;
+  color: #e8c578;
+  cursor: pointer;
+}
+
+.phase-description {
+  margin: 8px 0 12px;
+  color: #969fa3;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.phase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.phase-row {
+  display: grid;
+  grid-template-columns: 30px minmax(40px, 1fr) 38px;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+}
+
+.phase-track {
+  height: 12px;
+  background: #111618;
+  border: 1px solid #42494e;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.phase-fill {
+  height: 100%;
+  background: #e8c578;
+}
+
+.phase-value {
+  text-align: right;
+  color: #969fa3;
+  font-size: 11px;
+}
+
+.phase-empty {
+  color: #969fa3;
+  font-size: 11px;
+}
+
+.phase-api {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 12px;
+  padding-top: 9px;
+  border-top: 1px dashed #42494e;
+}
+
+.phase-api code {
+  color: #a2a8ac;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.phase-api span {
+  color: #e8c578;
+}
+
+.phase-skeleton {
+  height: 12px;
+  border-radius: 4px;
+}
+
+.phase-shimmer {
+  background: linear-gradient(90deg, #242a2d, #343b3f, #242a2d);
+  background-size: 200% 100%;
+  animation: phase-shimmer 1.5s infinite;
+}
+
+@keyframes phase-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

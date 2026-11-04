@@ -1,0 +1,146 @@
+
+.flats-edge-card {
+  min-width: 0;
+  padding: 14px;
+  background: #1b2022;
+  border: 1px solid #343b3f;
+  border-radius: 12px;
+  color: #f1f1ef;
+}
+
+.flats-edge-heading,
+.flats-edge-title {
+  display: flex;
+  align-items: center;
+}
+
+.flats-edge-heading {
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.flats-edge-title {
+  gap: 9px;
+}
+
+.flats-edge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e8c578;
+}
+
+.flats-edge-title h2 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.flats-edge-info {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #42494e;
+  border-radius: 50%;
+  background: transparent;
+  color: #e8c578;
+  cursor: pointer;
+}
+
+.flats-edge-description {
+  margin: 8px 0 12px;
+  color: #969fa3;
+  font-size: 12px;
+}
+
+.flats-edge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 100px;
+}
+
+.flats-edge-item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) 12px;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.flats-edge-bullet {
+  color: #e8c578;
+  font-size: 10px;
+}
+
+.flats-edge-item-content {
+  min-width: 0;
+}
+
+.flats-edge-item-content > span {
+  display: block;
+  overflow-wrap: anywhere;
+  color: #d5d8d8;
+}
+
+.flats-edge-indicator {
+  height: 4px;
+  margin-top: 6px;
+  background: #343b3f;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.flats-edge-indicator > div {
+  height: 100%;
+  background: #e8c578;
+  border-radius: 5px;
+}
+
+.flats-edge-unit {
+  color: #969fa3;
+}
+
+.flats-edge-empty {
+  padding: 20px 5px;
+  color: #969fa3;
+  font-size: 12px;
+  text-align: center;
+}
+
+.flats-edge-api {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 12px;
+  padding-top: 9px;
+  border-top: 1px dashed #42494e;
+}
+
+.flats-edge-api code {
+  color: #a2a8ac;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.flats-edge-api span {
+  color: #e8c578;
+}
+
+.flats-edge-skeleton {
+  height: 16px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.flats-shimmer {
+  background: linear-gradient(90deg, #242a2d, #343b3f, #242a2d);
+  background-size: 200% 100%;
+  animation: flats-shimmer 1.5s infinite;
+}
+
+@keyframes flats-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

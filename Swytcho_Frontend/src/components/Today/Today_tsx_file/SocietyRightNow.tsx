@@ -54,7 +54,10 @@ function MetricCard({
   );
 }
 
-export default function SocietyRightNow({ kpis , loading = false }: Props) {
+export default function SocietyRightNow({
+  kpis,
+  loading = false,
+}: Props) {
   const getKpi = (metric: string) =>
     kpis.find((item) => item.metric === metric);
 
@@ -66,21 +69,13 @@ export default function SocietyRightNow({ kpis , loading = false }: Props) {
   const comparison = (metric: string, digits = 2) => {
     const kpi = getKpi(metric);
 
-    if (kpi?.previous_value == null || kpi.latest_value == null) {
-      return "Waiting for comparison data";
+    if (!kpi || kpi.latest_value === null) {
+      return "Waiting for electrical readings";
     }
 
-    const change = kpi.change;
-    const percent = kpi.change_percent;
-
-    if (change == null) return "Comparison unavailable";
-
-    const sign = change > 0 ? "+" : "";
-    const percentText =
-      percent == null ? "" : ` (${sign}${percent.toFixed(1)}%)`;
-
-    return `Previous: ${kpi.previous_value.toFixed(digits)} · Change: ${sign}${change.toFixed(digits)}${percentText}`;
+    return `Latest: ${kpi.latest_value.toFixed(digits)} ${kpi.unit}`;
   };
+
 
   const cards = [
     {

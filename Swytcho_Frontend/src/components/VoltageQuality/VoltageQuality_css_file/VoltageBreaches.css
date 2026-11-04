@@ -1,0 +1,141 @@
+
+/* =========================================
+   VOLTAGE BREACHES
+   SWYTCHO DARK THEME
+========================================= */
+
+.voltage-breaches-card {
+  width: 100%;
+  min-width: 0;
+  padding: 14px;
+  box-sizing: border-box;
+
+  background: #1b2022;
+  border: 1px solid #343b3f;
+  border-radius: 12px;
+
+  color: #f1f1ef;
+}
+
+.vb-heading,
+.vb-title {
+  display: flex;
+  align-items: center;
+}
+
+.vb-heading {
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.vb-title {
+  gap: 9px;
+  min-width: 0;
+}
+
+.vb-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e8c578;
+}
+
+.vb-title h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.vb-info {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid #42494e;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #e8c578;
+  cursor: pointer;
+}
+
+.vb-info:hover {
+  border-color: #e8c578;
+  background: rgba(232, 197, 120, 0.1);
+}
+
+.vb-description {
+  margin: 8px 0 12px;
+  color: #969fa3;
+  font-size: 12px;
+}
+
+/* TABLE */
+
+.vb-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #42494e;
+  border-radius: 7px;
+}
+
+.vb-table {
+  width: 100%;
+  min-width: 570px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.vb-table th {
+  padding: 7px 8px;
+  background: #252b2d;
+
+  color: #e8c578;
+  font-size: 11px;
+  font-weight: 500;
+  font-style: italic;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.vb-table td {
+  height: 28px;
+  padding: 5px 8px;
+  border-top: 1px solid #343b3f;
+  font-size: 11px;
+}
+
+.vb-empty {
+  height: 75px !important;
+  text-align: center;
+  color: #969fa3;
+}
+
+/* SKELETON */
+
+.vb-skeleton {
+  width: 90%;
+  height: 7px;
+  border-radius: 5px;
+}
+
+.vb-shimmer {
+  background: linear-gradient(
+    90deg,
+    #242a2d,
+    #42494e,
+    #242a2d
+  );
+  background-size: 200% 100%;
+  animation: vb-shimmer 1.5s infinite;
+}
+
+@keyframes vb-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

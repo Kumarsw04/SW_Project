@@ -1,0 +1,202 @@
+.society-map-page {
+  width: 100%;
+  min-width: 0;
+  padding: 24px;
+  color: #f3f4f4;
+}
+
+.society-map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.society-map-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 650;
+}
+
+.society-map-header p {
+  margin: 7px 0 0;
+  color: #929ba1;
+  font-size: 13px;
+}
+
+.building-status {
+  padding: 7px 12px;
+  border: 1px solid rgba(232, 197, 120, 0.3);
+  border-radius: 20px;
+  color: #e8c578;
+  font-size: 12px;
+}
+
+.floor-selector {
+  padding: 18px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.floor-selector-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.floor-selector-heading h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.floor-selector button {
+  cursor: pointer;
+}
+
+.floor-selector-heading > button {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: transparent;
+  color: #cbd5e1;
+  font-size: 11px;
+}
+
+.floor-selector-heading > button.active {
+  border-color: #e8c578;
+  color: #e8c578;
+  background: rgba(232, 197, 120, 0.08);
+}
+
+.floor-selector-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.floor-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #f3f4f4;
+  text-align: left;
+  transition: 0.2s ease;
+}
+
+.floor-option:hover,
+.floor-option.selected {
+  border-color: #e8c578;
+  background: rgba(232, 197, 120, 0.08);
+}
+
+.floor-option span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.floor-option small {
+  color: #929ba1;
+  font-size: 11px;
+}
+
+.building-view-panel {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: #15191c;
+}
+
+.building-view-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.building-view-heading h2 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.building-view-heading span {
+  color: #929ba1;
+  font-size: 11px;
+}
+
+@media (max-width: 640px) {
+  .society-map-page {
+    padding: 14px;
+  }
+
+  .floor-selector-options {
+    grid-template-columns: 1fr;
+  }
+
+  .society-map-header h1 {
+    font-size: 20px;
+  }
+}
+.appliance-info-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px;
+  margin-top: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.appliance-info-panel h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #f3f4f4;
+}
+
+.appliance-info-panel p {
+  margin: 5px 0 0;
+  color: #929ba1;
+  font-size: 12px;
+}
+
+.appliance-info-panel span {
+  display: block;
+  color: #929ba1;
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.appliance-info-panel strong {
+  color: #e8c578;
+  font-size: 13px;
+}
+
+.appliance-info-panel button {
+  padding: 8px 12px;
+  border: 1px solid rgba(232, 197, 120, 0.35);
+  border-radius: 8px;
+  background: transparent;
+  color: #e8c578;
+  cursor: pointer;
+}
+.building-canvas-stage {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+}
