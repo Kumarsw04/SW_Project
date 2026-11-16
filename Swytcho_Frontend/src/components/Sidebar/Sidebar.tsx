@@ -74,6 +74,8 @@ export interface SidebarProps {
   onNavigate?: (path: string) => void;
   /** Optional location line rendered under the brand. */
   locationName?: string;
+  /** Active alerts count from the shared Building 1 simulation. */
+  alertCount?: number;
   /** Extra class names for the root element. */
   className?: string;
 }
@@ -185,6 +187,7 @@ export function Sidebar({
   onNavigate,
   locationName,
   className,
+  alertCount = 0,
 }: SidebarProps) {
   const [internalActivePath, setInternalActivePath] =
     useState<string>(DEFAULT_ACTIVE_PATH);
@@ -223,6 +226,7 @@ export function Sidebar({
               {section.items.map((item) => {
                 const isActive = !item.locked && item.path === currentPath;
                 const Icon = item.icon;
+                const displayedCount = item.id === "alerts" ? alertCount : item.count;
                 const linkClassName = [
                   'sidebar-link',
                   isActive ? 'sidebar-link--active' : '',
@@ -235,9 +239,9 @@ export function Sidebar({
                   <>
                     <Icon className="sidebar-link-icon" size={15} strokeWidth={1.9} aria-hidden="true" />
                     <span className="sidebar-link-label">{item.label}</span>
-                    {typeof item.count === 'number' ? (
-                      <span className="sidebar-count" aria-label={`${item.count} open alerts`}>
-                        {item.count}
+                    {typeof displayedCount === 'number' && displayedCount > 0 ? (
+                      <span className="sidebar-count" aria-label={`${displayedCount} active alerts`}>
+                        {displayedCount}
                       </span>
                     ) : null}
                     {item.status ? (

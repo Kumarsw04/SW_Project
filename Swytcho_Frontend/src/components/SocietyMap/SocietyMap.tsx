@@ -10,6 +10,8 @@ import type { FloorData } from "./Building3D/types/building.types";
 
 import { createDemoAppliances } from "./Building3D/data/buildingMockData";
 
+import BuildingLoginDemo from "./BuildingLoginDemo";
+
 import "./SocietyMap.css";
 
 const FLOORS: FloorData[] = [
@@ -103,6 +105,16 @@ export default function SocietyMap() {
         onToggleFloor={toggleFloor}
         onToggleMultiSelect={toggleMultiSelect}
       />
+      <section className="building-view-panel">
+        <div className="building-view-heading">
+          <h2>Building Assignment Login</h2>
+          <span>Excel-based building access</span>
+        </div>
+
+        <div className="building-login-stage">
+          <BuildingLoginDemo />
+        </div>
+      </section>
 
       <section className="building-view-panel">
         <div className="building-view-heading">
@@ -123,7 +135,6 @@ export default function SocietyMap() {
             onApplianceDoubleClick={handleApplianceDoubleClick}
             onEmptySpaceClick={clearApplianceSelection}
           />
-
           <TacticalWorkspace
             appliances={allAppliances}
             selectedApplianceIds={Array.from(selectedAppliances)}

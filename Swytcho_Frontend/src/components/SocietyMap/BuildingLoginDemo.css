@@ -1,0 +1,77 @@
+.building-login-demo {
+  width: 100%;
+  padding: 24px;
+  border-radius: 16px;
+  background: #171d22;
+  color: #f5f5f5;
+}
+
+.building-login-header h2 {
+  margin: 0 0 8px;
+}
+
+.building-login-header p {
+  color: #aab3bc;
+}
+
+.building-login-form {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.building-login-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  color: white;
+  background: #252d34;
+  border: 1px solid #424c55;
+  border-radius: 8px;
+}
+
+.building-login-form button {
+  padding: 12px 20px;
+  color: #171d22;
+  background: #e8c578;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.building-login-error {
+  color: #ff8585;
+}
+
+.assigned-building-results {
+  margin-top: 24px;
+}
+
+.assigned-building-list {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.assigned-building-list div {
+  padding: 10px 14px;
+  border: 1px solid #424c55;
+  border-radius: 8px;
+  background: #252d34;
+}
+.building-login-demo {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.assigned-building-results {
+  width: 100%;
+  min-width: 0;
+}
+
+.assigned-building-list {
+  width: 100%;
+  box-sizing: border-box;
+}

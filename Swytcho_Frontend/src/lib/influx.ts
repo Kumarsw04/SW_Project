@@ -73,18 +73,18 @@ export async function fetchInfluxRecords(): Promise<InfluxRecord[]> {
 
   // Read all fields from the selected measurement.
   const query = `
-    from(bucket: "${bucket}")
-      |> range(start: -15m)
-      |> filter(fn: (r) => r._measurement == "erg_telemetry")
-      |> group(columns: [
-        "device_id",
-        "channel_id",
-        "channel_role",
-        "_measurement",
-        "_field"
-      ])
-      |> sort(columns: ["_time"], desc: true)
-  `;
+  from(bucket: "${bucket}")
+    |> range(start: -30d)
+    |> filter(fn: (r) => r._measurement == "erg_telemetry")
+    |> last()
+    |> keep(columns: [
+      "_time",
+      "_field",
+      "_value",
+      "device_id",
+      "channel_id"
+    ])
+`;
 
   const baseUrl = url.replace(/\/+$/, "");
 
