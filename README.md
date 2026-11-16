@@ -4,17 +4,12 @@
   <strong>Smart Energy Monitoring • Society Management • Building Digital Twin</strong>
 </p>
 
-<<<<<<< HEAD
-=======
 [![SWYTCHO Frontend CI](https://github.com/Kumarsw04/SW_Project/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/Kumarsw04/SW_Project/actions/workflows/frontend-ci.yml)
 
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 <p align="center">
   An integrated platform for monitoring, analyzing, and managing electricity consumption and infrastructure across residential societies and other building environments.
 </p>
 
-<<<<<<< HEAD
-=======
 
 **Repository:** [Kumarsw04/SW_Project](https://github.com/Kumarsw04/SW_Project)  
 **Frontend application:** `Swytcho_Frontend/`  
@@ -86,7 +81,6 @@ The sidebar includes **Today**, **Society Map**, **Voltage Quality**, **Alerts**
 - [Development status and roadmap](#16-current-development-status)
 - [Future vision](#18-future-vision)
 
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 ---
 
 ## 1. Project Overview
@@ -113,11 +107,7 @@ The long-term vision is to develop SWYTCHO into a comprehensive **Building Energ
 
 ---
 
-<<<<<<< HEAD
-# 2. Major Project Modules
-=======
 ## 2. Major Project Modules
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 SWYTCHO is organized around several interconnected modules.
 
@@ -127,13 +117,9 @@ SWYTCHO is organized around several interconnected modules.
 | Energy Monitoring | Live electrical readings and consumption analysis |
 | SocietyMap | Building and society visualization |
 | Floorcraft | Floor-plan and 3D building visualization |
-<<<<<<< HEAD
-| Building Digital Twin | Interactive 3D building representation |
-=======
 | Building Digital Twin | Interactive 3D building representation and equipment simulation |
 | Alerts | Active equipment warnings and shutdown/fault counts in a dedicated page |
 | Actions | Manual simulation controls linked to 3D equipment and alerts |
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 | Smart Meter Management | Meter registration, mapping, and monitoring |
 | Bill Copilot | Electricity bill management and analysis |
 | Appliance Management | Appliance information and energy estimation |
@@ -144,48 +130,14 @@ The modules are being developed progressively and are not all production-ready.
 
 ---
 
-<<<<<<< HEAD
-# 3. Technology Stack
-
-## Frontend
-=======
 ## 3. Technology Stack
 
 ### Frontend
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 | Technology | Purpose |
 |---|---|
 | React | Component-based frontend development |
 | TypeScript | Type safety and maintainable application code |
-<<<<<<< HEAD
-| Vite / Next.js | Frontend development and application framework, depending on the module |
-| Tailwind CSS | Utility-based styling |
-| CSS | Component-specific styling |
-| TanStack Query | Server-state and API data management |
-| Zustand | Client-side state management |
-| React Hook Form | Form management |
-| Zod | Data validation |
-| ECharts | Data visualization and analytics |
-| React Flow | Node-based workflows and visual relationships |
-| Three.js | 3D rendering |
-| React Three Fiber | React-based 3D scene development |
-| @react-three/drei | 3D utilities and controls |
-| Lucide React | Interface icons |
-
-## Backend and Data
-
-| Technology | Purpose |
-|---|---|
-| Supabase | Database, authentication, and storage |
-| PostgreSQL | Relational database |
-| InfluxDB Cloud | Time-series electrical telemetry |
-| Railway | Existing backend deployment and API hosting |
-| REST APIs | Communication between frontend and backend |
-| Flux | InfluxDB query language |
-
-## Development and Collaboration
-=======
 | Vite | Development server and build tool for the current React frontend |
 | Tailwind CSS | Utility-based styling |
 | CSS | Component-specific styling |
@@ -215,7 +167,6 @@ The modules are being developed progressively and are not all production-ready.
 | Flux | InfluxDB query language |
 
 ### Development and Collaboration
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 | Technology | Purpose |
 |---|---|
@@ -228,11 +179,7 @@ The modules are being developed progressively and are not all production-ready.
 
 ---
 
-<<<<<<< HEAD
-# 4. Today – Society Energy Dashboard
-=======
 ## 4. Today – Society Energy Dashboard
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 The Today module provides a centralized overview of electricity consumption and society-level operational information.
 
@@ -293,19 +240,11 @@ The initial frontend demonstration uses sample values for layout and data visual
 
 ---
 
-<<<<<<< HEAD
-# 5. InfluxDB – Live Electrical Telemetry
-
-InfluxDB Cloud is used for storing and retrieving time-series electrical measurements.
-
-The frontend integration communicates with the InfluxDB Query API using Flux.
-=======
 ## 5. InfluxDB – Live Electrical Telemetry
 
 InfluxDB Cloud is used for storing and retrieving time-series electrical measurements.
 
 The tested frontend telemetry path uses the InfluxDB Query API with Flux. For secure deployment, privileged query credentials should be kept behind an authenticated backend API.
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 ### Current Integration
 
@@ -384,15 +323,9 @@ Continuous real-time monitoring and reliable online/offline detection remain und
 
 ---
 
-<<<<<<< HEAD
-# 6. Supabase – Database Architecture
-
-Supabase is the central database platform for storing structured society, building, consumer, appliance, meter, and energy-related information.
-=======
 ## 6. Supabase – Database Architecture
 
 Supabase is the **intended central relational data platform** for structured society, building, consumer, appliance, meter, and energy-related information. The schema and access model are still being developed; the current Excel username demo is not backed by Supabase Auth.
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 PostgreSQL is used as the relational database.
 
@@ -471,11 +404,7 @@ The final production access policies still need to be implemented and verified.
 
 ---
 
-<<<<<<< HEAD
-# 7. Bill Copilot – Electricity Bill Management
-=======
 ## 7. Bill Copilot – Electricity Bill Management
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 Bill Copilot is intended to provide a structured system for managing electricity bills, meter readings, tariffs, and consumption analysis.
 
@@ -523,11 +452,7 @@ The bill-management architecture is designed to connect electricity consumption 
 
 ---
 
-<<<<<<< HEAD
-# 8. SocietyMap – Society and Building Visualization
-=======
 ## 8. SocietyMap – Society and Building Visualization
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 SocietyMap is the building-oriented visualization module.
 
@@ -562,11 +487,7 @@ The newer code-generated building implementation is being developed separately s
 
 ---
 
-<<<<<<< HEAD
-# 9. Floorcraft – Floor Plan and 3D Visualization
-=======
 ## 9. Floorcraft – Floor Plan and 3D Visualization
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 Floorcraft is an important part of the broader building digitalization concept.
 
@@ -600,19 +521,11 @@ The visualization layer will use this structured data to generate the correspond
 
 ---
 
-<<<<<<< HEAD
-# 10. Building Digital Twin – 3D Models
-
-The new Building Digital Twin module is being developed using React Three Fiber and Three.js.
-
-The current implementation focuses on code-generated building geometry and user-specific building assignments.
-=======
 ## 10. Building Digital Twin – 3D Models
 
 The Building Digital Twin module uses React Three Fiber and Three.js for model rendering and visualization.
 
 The current implementation includes code-generated geometry, a user-assignment demo, and interactive building-equipment simulations.
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 ### Created 3D Models
 
@@ -629,8 +542,6 @@ Two GLB models were also used as visual references during the development of the
 
 The current renderer uses React components rather than loading those original GLB files at runtime.
 
-<<<<<<< HEAD
-=======
 
 ### Interactive Building 1 Simulation — Implemented Demo
 
@@ -673,7 +584,6 @@ Each section is a **separate React component** under `src/components/`, followin
 
 These steps are for validating the UI/demo logic, not for commissioning any real infrastructure.
 
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 ### Excel-Based Building Assignment
 
 The following sample users have been configured:
@@ -716,11 +626,7 @@ Society
 
 ---
 
-<<<<<<< HEAD
-# 11. Infrastructure Management
-=======
 ## 11. Infrastructure Management
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 The long-term Building Digital Twin architecture will include reusable infrastructure components.
 
@@ -768,11 +674,7 @@ Instead of developing separate 3D models for every building, the system is inten
 - Common Area Lighting
 - EV Charging Stations
 
-<<<<<<< HEAD
-These are planned infrastructure components. The reusable 3D library is not yet complete.
-=======
 The full production infrastructure catalog is **planned**. The current Building 1 demonstration already includes initial 3D implementations of the DG, MDB, lifts, water pumps, rooftop solar, EV charger and their status/flow connections; the wider reusable library is **not yet complete**.
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 ### Reusable Component Concept
 
@@ -794,11 +696,7 @@ The 3D representation remains reusable, while the configuration and telemetry ar
 
 ---
 
-<<<<<<< HEAD
-# 12. Smart Meter and Appliance Management
-=======
 ## 12. Smart Meter and Appliance Management
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 Smart meters and appliances are intended to connect the physical building representation with actual electrical consumption information.
 
@@ -831,11 +729,7 @@ The appliance database design also considers fields such as category, subcategor
 
 ---
 
-<<<<<<< HEAD
-# 13. Society Map and Satellite Visualization
-=======
 ## 13. Society Map and Satellite Visualization
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 A future SocietyMap extension will allow users to navigate registered buildings geographically.
 
@@ -852,11 +746,7 @@ The map experience is intended to connect geographical building information with
 
 ---
 
-<<<<<<< HEAD
-# 14. Data and System Architecture
-=======
 ## 14. Data and System Architecture
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 The platform separates structured information, telemetry, backend operations, and visual rendering.
 
@@ -904,9 +794,6 @@ The exact division of responsibilities between Railway and Supabase will depend 
 
 ---
 
-<<<<<<< HEAD
-# 15. Proposed Project Folder Organization
-=======
 ## 15. Current Repository Layout & Proposed Organization
 
 ### Current Frontend Structure (selected paths)
@@ -960,7 +847,6 @@ The tree is selective, and some helper names/locations vary as features evolve. 
 
 ### Longer-Term Proposed Organization
 
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 The following is a target organizational structure for the major SWYTCHO modules. It is not a claim that every listed file or directory has already been created.
 
@@ -1040,9 +926,6 @@ Actual source directories may differ by module or repository. This structure is 
 
 ---
 
-<<<<<<< HEAD
-# 16. Current Development Status
-=======
 ## CI/CD Workflow — GitHub Actions
 
 SWYTCHO uses Git for version control and is hosted in the [`Kumarsw04/SW_Project`](https://github.com/Kumarsw04/SW_Project) repository. The **proposed GitHub Actions workflow** below automatically validates and packages the React/Vite frontend when changes are pushed or reviewed. It does **not** deploy the site to production yet.
@@ -1178,7 +1061,6 @@ The current pipeline delivers a **build artifact** but does **not** change the l
 ---
 
 ## 16. Current Development Status
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 The following table summarizes the development progress based on the work completed and discussed so far.
 
@@ -1203,43 +1085,29 @@ The following table summarizes the development progress based on the work comple
 | Building Viewer | Created |
 | Excel building assignment demo | Working implementation |
 | SocietyMap building demo integration | Implemented |
-<<<<<<< HEAD
-=======
 | Interactive power cut and DG backup demo | Implemented in frontend simulation |
 | Animated electrical connections and circuit load demo | Implemented; runtime validation ongoing |
 | Dedicated Alerts page and active-alert counting | Implemented as frontend demo |
 | Dedicated Actions page and shared simulation controls | Implemented as frontend demo |
 | Persistent event history / acknowledgment | Planned |
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 | Supabase authentication | Planned |
 | Database-driven building assignments | Planned |
 | GLB loading through Supabase Storage | Planned |
 | Floor-wise new-model navigation | Planned |
 | Flat and room visualization | Planned |
 | Appliance placement in new 3D system | Planned |
-<<<<<<< HEAD
-| Reusable infrastructure library | Planned |
-=======
 | Building 1 demo infrastructure (DG, lifts, pumps, solar, EV, MDB) | Implemented as simulated 3D components |
 | Full reusable infrastructure library | Planned / in progress |
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 | Smart meter mapping to 3D models | Planned |
 | Live telemetry in 3D buildings | Planned |
 | Satellite society navigation | Planned |
 | Premium 3D access | Planned |
-<<<<<<< HEAD
-
----
-
-# 17. Development Roadmap
-=======
 | GitHub Actions automated frontend build | Workflow provided for installation; GitHub run not yet verified |
 | Production CI/CD deployment | Planned after hosting/service configuration |
 
 ---
 
 ## 17. Development Roadmap
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 The following roadmap represents the proposed order of development.
 
@@ -1261,24 +1129,15 @@ The following roadmap represents the proposed order of development.
 
 ### Phase 3 – Building Digital Twin
 
-<<<<<<< HEAD
-- Complete the building renderer.
-- Support code-generated and GLB models.
-=======
 - Continue refining the **existing code-generated Building 1 and Building 2 viewer** and interactive simulation.
 - Add GLB model loading (the current viewer does not dynamically load GLB assets).
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 - Develop floor-wise navigation.
 - Develop flat and room visualization.
 - Introduce reusable 3D components.
 
 ### Phase 4 – Infrastructure and Appliances
 
-<<<<<<< HEAD
-- Build the infrastructure component library.
-=======
 - Extend the **initial implemented 3D component set** into a reusable, configurable infrastructure library.
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 - Implement appliance placement.
 - Add water, electrical, mechanical, and safety systems.
 - Connect infrastructure components to their database records.
@@ -1290,11 +1149,7 @@ The following roadmap represents the proposed order of development.
 - Display building-wise and floor-wise consumption.
 - Visualize meter status.
 - Show generator and grid supply.
-<<<<<<< HEAD
-- Introduce abnormal-consumption alerts.
-=======
 - Extend existing simulated equipment alerts to verified real telemetry alerts.
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 - Add historical consumption visualization.
 
 ### Phase 6 – Advanced Building Platform
@@ -1308,11 +1163,7 @@ The following roadmap represents the proposed order of development.
 
 ---
 
-<<<<<<< HEAD
-# 18. Future Vision
-=======
 ## 18. Future Vision
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 SWYTCHO is intended to evolve beyond a conventional electricity dashboard.
 
@@ -1346,11 +1197,7 @@ The same architecture should be reusable across different building environments.
 
 ---
 
-<<<<<<< HEAD
-# 19. Project Objective
-=======
 ## 19. Project Objective
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 
 **SWYTCHO aims to connect energy data, building infrastructure, and digital visualization into one intelligent management platform.**
 
@@ -1358,8 +1205,6 @@ By combining structured building information, real-time telemetry, energy analyt
 
 ---
 
-<<<<<<< HEAD
-=======
 ## Contributing & Development Notes
 
 This repository is evolving rapidly. Keep code-generated 3D models, simulation logic, UI pages and telemetry integrations modular, and avoid placing credentials in React client code. Confirm behavior in the browser and run `npm run build` before pushing changes.
@@ -1378,7 +1223,6 @@ Only push to `main` if that is the branch and workflow your team intends to upda
 
 ---
 
->>>>>>> 7093087 (docs: update SWYTCHO README and add CI/CD workflow)
 **Project:** SWYTCHO  
 **Development:** Active  
 **Primary Focus:** Society Energy Management and Building Digital Twin  
